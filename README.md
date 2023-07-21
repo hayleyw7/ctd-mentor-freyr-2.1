@@ -19,3 +19,5 @@
 ### Section 4
 
 * **Lesson 4.1 – [Web Basics: HTML Basics](https://learn.codethedream.org/html-basics-op/)** *([public repo](https://github.com/hayleyw7/ctd-mentor-freyr-intro))*
+
+* **Lesson 4.2 – [Web Basics: JavaScript and the DOM](https://learn.codethedream.org/javascript-and-the-dom-op/)** *([public repo](https://github.com/hayleyw7/ctd-mentor-freyr-intro))*
