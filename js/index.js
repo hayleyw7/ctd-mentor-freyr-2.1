@@ -25,12 +25,22 @@ for (let i = 0; i < skills.length; i++) {
   skillsList.appendChild(skill);
 };
 
-// message form
+// message headings
 
 const messageForm = document.querySelector('form[name="leave_message"]');
 
+const messageSection = document.getElementById("messages");
+messageSection.style.display = "none";
+
+// message functionality
+
 messageForm.addEventListener("submit", function(event) {
+
+  // prevent refresh
+
   event.preventDefault();
+
+  // create message
 
   const usersName = event.target.usersName.value;
   const usersEmail = event.target.usersEmail.value;
@@ -38,7 +48,8 @@ messageForm.addEventListener("submit", function(event) {
 
   console.log(usersName, usersEmail, usersMessage);
 
-  const messageSection = document.getElementById("messages");
+  // add message
+
   const messageList = messageSection.querySelector("ul");
   const newMessage = document.createElement("li");
 
@@ -47,19 +58,29 @@ messageForm.addEventListener("submit", function(event) {
     <span>wrote: ${usersMessage}</span>
   `;
 
-  const removeButton = document.createElement("button");
+  messageSection.style.display = "block";
+  messageList.append(newMessage);
 
+  // remove message
+
+  const removeButton = document.createElement("button");
   removeButton.innerText = "remove";
   removeButton.type = "button";
+  newMessage.append(removeButton);
 
   removeButton.addEventListener("click", function () {
     const entry = removeButton.parentNode;
 
     entry.remove();
+
+    // hide message header
+
+    if (messageSection.style.display = "block") {
+      messageSection.style.display = "none";
+    };
   });
 
-  messageList.append(newMessage);
-  newMessage.append(removeButton);
+  // reset form
 
   messageForm.reset();
 });
