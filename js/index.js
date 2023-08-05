@@ -58,15 +58,30 @@ messageForm.addEventListener("submit", function(event) {
     <span>wrote: ${usersMessage}</span>
   `;
 
-  messageSection.style.display = "block";
+  messageSection.style.display = "inline-block";
   messageList.append(newMessage);
 
-  // remove message
+  // create buttons
 
   const removeButton = document.createElement("button");
-  removeButton.innerText = "remove";
-  removeButton.type = "button";
-  newMessage.append(removeButton);
+  const editButton = document.createElement("button");
+
+  const createRemoveButton = () => {
+    removeButton.innerText = "remove";
+    removeButton.type = "button";
+    newMessage.append(removeButton); 
+  };
+
+  const createEditButton = () => {
+    editButton.innerText = "edit";
+    editButton.type = "button";
+    newMessage.append(editButton);
+  };
+
+  createRemoveButton();
+  createEditButton();
+
+  // remove
 
   removeButton.addEventListener("click", function () {
     const entry = removeButton.parentNode;
@@ -75,9 +90,48 @@ messageForm.addEventListener("submit", function(event) {
 
     // hide message header
 
-    if (messageSection.style.display = "block") {
+    if (messageSection.style.display = "inline-block") {
       messageSection.style.display = "none";
     };
+  });
+
+  // edit
+
+  editButton.addEventListener("click", function () {
+    let editTextBox = document.createElement("textarea");
+    const saveButton = document.createElement("button");
+
+    newMessage.innerHTML = `
+      <a href="mailto:${usersEmail}">${usersName}</a>
+      <span>wrote: </span>
+    `;
+
+    editTextBox.innerHTML = `
+      name="editTextBox" required>${usersMessage}
+    `
+
+    editTextBox.value = usersMessage;
+
+    newMessage.append(editTextBox);
+    newMessage.append(saveButton);
+
+    saveButton.innerText = "save";
+    saveButton.type = "button";
+    newMessage.append(saveButton);
+
+    // save edit
+
+    saveButton.addEventListener("click", function () {
+      const usersEditedMessage = editTextBox.value;
+
+      newMessage.innerHTML = `
+        <a href="mailto:${usersEmail}">${usersName}</a>
+        <span>wrote: ${usersEditedMessage}</span>
+      `;
+
+      createRemoveButton();
+      createEditButton();
+    });
   });
 
   // reset form
