@@ -1,4 +1,4 @@
-# Code The Dream Mentorship: Freyr Student Assignments
+## Code The Dream Mentorship: Freyr Student Assignments
 
 ### Section 1
 
@@ -20,3 +20,4 @@
 
 * **Lesson 4.1** - [Web Basics: HTML Basics](https://learn.codethedream.org/html-basics-op/) *([public repo](https://github.com/hayleyw7/ctd-mentor-freyr-intro))*
 * **Lesson 4.2** - [Web Basics: JavaScript and the DOM](https://learn.codethedream.org/javascript-and-the-dom-op/) *([public repo](https://github.com/hayleyw7/ctd-mentor-freyr-intro))*
+* **Lesson 4.3** - [Web Basics: HTML Forms and DOM Practice](https://learn.codethedream.org/html-forms-and-dom-practice-op/) *([public repo](https://github.com/hayleyw7/ctd-mentor-freyr-intro))*
