@@ -27,10 +27,16 @@ for (let i = 0; i < skills.length; i++) {
 
 // message headings
 
-const messageForm = document.querySelector('form[name="leave_message"]');
+const leaveMessageSection = document.getElementById("leave_a_message");
 
 const messageSection = document.getElementById("messages");
 messageSection.style.display = "none";
+
+// message form focus
+
+messageForm.addEventListener('focusin', (event) => {
+  messageForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
 
 // message functionality
 
