@@ -106,14 +106,10 @@ messageForm.addEventListener("submit", function(event) {
       <span>wrote: </span>
     `;
 
-    editTextBox.innerHTML = `
-      name="editTextBox" required>${usersMessage}
-    `
-
+    editTextBox.name = "editTextBox";
+    editTextBox.required = true;
     editTextBox.value = usersMessage;
-
     newMessage.append(editTextBox);
-    newMessage.append(saveButton);
 
     saveButton.innerText = "save";
     saveButton.type = "button";
