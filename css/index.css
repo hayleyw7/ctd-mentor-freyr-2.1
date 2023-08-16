@@ -13,7 +13,10 @@ nav {
   background: rgb(220, 209, 184);
   display: flex;
   justify-content: center;
-  padding: 0.7rem;
+  padding: 0.5rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 nav a {

@@ -27,7 +27,7 @@ for (let i = 0; i < skills.length; i++) {
 
 // message headings
 
-const leaveMessageSection = document.getElementById("leave_a_message");
+const messageForm = document.querySelector('form[name="leave_message"]');
 
 const messageSection = document.getElementById("messages");
 messageSection.style.display = "none";
