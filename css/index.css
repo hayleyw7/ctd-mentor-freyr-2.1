@@ -7,7 +7,26 @@ body {
   color: white;
   font-family: 'Raleway', sans-serif;
   margin: 0;
-  padding-top: 1.5rem;
+}
+
+nav {
+  background: rgb(220, 209, 184);
+  display: flex;
+  justify-content: center;
+  padding: 0.7rem;
+}
+
+nav a {
+  color: rgb(112, 139, 96);
+  margin: 0 15px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: 800;
+  text-decoration: none;
+
+  &:hover {
+    color: white;
+  }
 }
 
 section {
@@ -22,8 +41,12 @@ h2 {
   color: rgb(220, 209, 184);
 }
 
-a {
-  color: white !important;
+li a {
+  color: white;
+
+  &:hover {
+    color: rgb(187, 210, 173);
+  }
 }
 
 /* lists */
@@ -84,7 +107,6 @@ span {
 
 button {
   padding: 0.6rem 0.8rem;
-  color: white;
   border: none;
   font-weight: 800;
   font-size: 1rem;
@@ -94,12 +116,17 @@ button {
     width: 10rem;
     margin-top: 0.7rem;
     border-radius: 1rem;
+    color:  rgb(112, 139, 96);
   }
 
   &:not([type="submit"]) {
     margin-right: 0.2rem;
     background: rgb(112, 139, 96);
     color: rgb(187, 210, 173);
+  }
+
+  &:hover {
+    color: white;
   }
 }
 
@@ -126,9 +153,7 @@ footer {
 
   footer {
     margin: 4rem 0 0 0;
-    /* bottom: 0; */
     width: 100%;
     font-size: 2rem;
   }
 }
-
