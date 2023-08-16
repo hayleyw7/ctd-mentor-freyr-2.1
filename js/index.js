@@ -60,6 +60,7 @@ messageForm.addEventListener("submit", function(event) {
 
   messageSection.style.display = "inline-block";
   messageList.append(newMessage);
+  messageSection.scrollIntoView({ behavior: "smooth" });
 
   // create buttons
 
