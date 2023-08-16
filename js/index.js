@@ -97,7 +97,7 @@ messageForm.addEventListener("submit", function(event) {
 
     // hide message header
 
-    if (messageSection.style.display = "inline-block" && !messageList.hasChildNodes()) {
+    if (messageSection.style.display = "inline-block" && messageList.childElementCount == 0) {
       messageSection.style.display = "none";
     };
   });
