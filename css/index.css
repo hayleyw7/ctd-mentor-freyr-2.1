@@ -153,34 +153,19 @@ footer {
 
 @media screen and (min-device-width: 200px) and (max-device-width: 480px){
   body {
-    font-size: 80%;
-    margin-top: 8rem;
+    margin-top: 4rem;
   }
 
   nav {
-    font-size: 300%;
-    padding: 1.5rem 0;
+    font-size: 0.8rem;
+    padding-left: 1rem;
   }
 
-  h1, h2 {
-    margin-top: 3rem;
-  }
-
-  label,
-  input,
-  li a,
-  button,
-  span {
-    font-size: 300% !important;
-  }
-
-  button[type="submit"] {
-    margin-top: 3rem !important;
-    width: 15rem !important;
+  nav a {
+    margin: 0;
   }
 
   footer {
-    margin: 4rem 0 0 0;
-    width: 100%;
+    padding: 0.03rem 0;
   }
 }
