@@ -37,6 +37,7 @@ nav a {
 section {
   margin: 0.25rem 4rem;
   padding: 0.25rem;
+  scroll-margin-top: 3.75rem;
 }
 
 h1,
