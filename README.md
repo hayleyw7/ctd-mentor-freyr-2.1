@@ -26,3 +26,4 @@ This assignment is for students in a Code The Dream program, & I am a mentor. Th
 * **Lesson 4.2** - [Web Basics: JavaScript and the DOM](https://learn.codethedream.org/javascript-and-the-dom-op/) *([public repo](https://github.com/hayleyw7/ctd-mentor-freyr-intro))*
 * **Lesson 4.3** - [Web Basics: HTML Forms and DOM Practice](https://learn.codethedream.org/html-forms-and-dom-practice-op/) *([public repo](https://github.com/hayleyw7/ctd-mentor-freyr-intro))*
 * **Lesson 4.4** - [Web Basics: CSS Basics](https://learn.codethedream.org/css-basics-op/) *([public repo](https://github.com/hayleyw7/ctd-mentor-freyr-intro))*
+* **Lesson 4.5** - [Web Basics: CSS Layout](https://learn.codethedream.org/css-layout-op/) *([public repo](https://github.com/hayleyw7/ctd-mentor-freyr-intro))*
