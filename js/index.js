@@ -12,11 +12,10 @@ footer.appendChild(copyright);
 
 // skills
 
-const skills = ["JavaScript", "React", "HTML", "CSS", "Ruby"];
+const skills = ["JavaScript", "React", "jQuery", "HTML", "CSS", "Ruby", "Rails", "Cypress"];
 
 const skillsSection = document.getElementById("skills");
 const skillsList = skillsSection.querySelector("ul");
-
 
 for (let i = 0; i < skills.length; i++) {
   const skill = document.createElement("li");
