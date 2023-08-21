@@ -1,66 +1,129 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=swap');
 
-/* general */
+/* utility */
+
+:root {
+  --beige: rgb(220, 209, 184);
+  --dark-green: rgb(112, 139, 96);
+  --light-green: rgb(187, 210, 173);
+}
+
+/* general tags */
 
 body {
-  background: rgb(112, 139, 96);
+  background: var(--dark-green);
   color: white;
   font-family: 'Raleway', sans-serif;
-  margin: 0;
-  padding-top: 1.5rem;
+  margin: 5rem 0 0;
+}
+
+nav {
+  background: var(--beige);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0.5rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+nav a {
+  color: var(--dark-green);
+  margin: 0 15px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: 800;
+  text-decoration: none;
+
+  &:hover {
+    color: white;
+  }
 }
 
 section {
   margin: 0.25rem 4rem;
   padding: 0.25rem;
+  scroll-margin-top: 3.75rem;
 }
 
-h1,
-h2 {
+h1, h2 {
   font-size: 2rem;
   font-weight: 800;
-  color: rgb(220, 209, 184);
+  color: var(--beige);
+  margin: 0;
 }
 
-a {
-  color: white !important;
+li a {
+  color: white;
+
+  &:hover {
+    color: var(--light-green);
+  }
 }
 
-/* lists */
+/* general lists */
 
 ul {
-  padding-left: 0;
+  margin: 0.4rem 0 1rem;
+  padding: 0;
 }
 
 li {
   display: block;
-  padding: 0.5rem 0 0.5rem 0;
+  padding: 0.5rem 0;
+  min-width: 50%;
+}
 
-  &:not(:first-child) {
-    border-style: solid;
-    border-width: 0.01rem 0 0 0;
-    border-color: rgb(187, 210, 173);
+li:not(:first-child),
+skills ul li:not(:nth-child(2)) {
+  border-style: solid;
+  border-width: 0.01rem 0 0;
+  border-color: var(--light-green);
+}
+
+/* skills */
+
+#skills h2 {
+  width: 100%;
+}
+
+#skills ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#skills li {
+  flex: 0 0 calc(50% - 2rem);
+  width: 100%;
+
+  &:nth-child(2) {
+    border: none;
   }
 }
 
 /* messages */
 
 form[name="leave_message"] {
+  margin-top: 0.8rem;
   display: flex;
   flex-direction: column;
 }
 
 label {
-  color: rgb(187, 210, 173);
+  color: var(--light-green);
   font-size: 1.2rem;
 }
 
-input,
-textarea {
+input, textarea {
   padding: 0.5rem 1rem;
   margin: 0.5rem 0;
   border: none;
   font-size: 1.2rem;
+  &[name="editTextBox"] {
+    font-size: 1rem;
+  }
 }
 
 input {
@@ -72,10 +135,6 @@ textarea {
   border-radius: 1.3rem;
 }
 
-textarea[name="editTextBox"] {
-  font-size: 1rem;
-}
-
 span {
   margin-right: 0.5rem;
 }
@@ -84,51 +143,65 @@ span {
 
 button {
   padding: 0.6rem 0.8rem;
-  color: white;
   border: none;
   font-weight: 800;
   font-size: 1rem;
 
   &[type="submit"] {
-    background: rgb(187, 210, 173);
-    width: 10rem;
+    background: var(--light-green);
+    width: 6rem;
     margin-top: 0.7rem;
     border-radius: 1rem;
+    color:  var(--dark-green);
   }
 
   &:not([type="submit"]) {
     margin-right: 0.2rem;
-    background: rgb(112, 139, 96);
-    color: rgb(187, 210, 173);
+    background: var(--dark-green);
+    color: var(--light-green);
+  }
+
+  &:hover {
+    color: white;
   }
 }
 
 /* footer */
 
 footer {
-  background: rgb(220, 209, 184);
+  background: var(--beige);
   margin-top: 2rem;
   padding: 1rem 4rem;
-  color: rgb(112, 139, 96);
+  color: var(--dark-green);
   font-weight: 800;
+  text-align: center;
 }
 
 /* mobile */
 
-@media screen and (min-device-width: 200px) and (max-device-width: 480px){
+@media screen and (max-width: 480px) {
   body {
-    font-size: 80%;
+    margin-top: 4rem;
   }
-
-  label, input {
-    font-size: 300% !important;
+  nav {
+    font-size: 0.8rem;
+    padding-left: 1rem;
   }
+  nav a {
+    margin: 0;
+  }
+  #skills li {
+    flex: 0 0 calc(100%);
+    min-width: 100%;
+    padding: 0.5rem 0 !important;
 
+    &:nth-child(2) {
+      border-style: solid;
+      border-width: 0.01rem 0 0;
+      border-color: var(--light-green);
+    }
+  }
   footer {
-    margin: 4rem 0 0 0;
-    /* bottom: 0; */
-    width: 100%;
-    font-size: 2rem;
+    padding: 0.03rem 0;
   }
 }
-

@@ -12,11 +12,10 @@ footer.appendChild(copyright);
 
 // skills
 
-const skills = ["JavaScript", "React", "HTML", "CSS", "Ruby"];
+const skills = ["JavaScript", "React", "jQuery", "HTML", "CSS", "Ruby", "Rails", "Cypress"];
 
 const skillsSection = document.getElementById("skills");
 const skillsList = skillsSection.querySelector("ul");
-
 
 for (let i = 0; i < skills.length; i++) {
   const skill = document.createElement("li");
@@ -31,6 +30,12 @@ const messageForm = document.querySelector('form[name="leave_message"]');
 
 const messageSection = document.getElementById("messages");
 messageSection.style.display = "none";
+
+// message form focus
+
+messageForm.addEventListener('focusin', (event) => {
+  messageForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
 
 // message functionality
 
@@ -60,6 +65,7 @@ messageForm.addEventListener("submit", function(event) {
 
   messageSection.style.display = "inline-block";
   messageList.append(newMessage);
+  messageSection.scrollIntoView({ behavior: "smooth" });
 
   // create buttons
 
@@ -90,7 +96,7 @@ messageForm.addEventListener("submit", function(event) {
 
     // hide message header
 
-    if (messageSection.style.display = "inline-block" && !messageList.hasChildNodes()) {
+    if (messageSection.style.display = "inline-block" && messageList.childElementCount == 0) {
       messageSection.style.display = "none";
     };
   });
