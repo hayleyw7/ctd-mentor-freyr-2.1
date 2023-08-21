@@ -73,12 +73,14 @@ ul {
 li {
   display: block;
   padding: 0.5rem 0;
+  min-width: 50%;
+}
 
-  &:not(:first-child) {
-    border-style: solid;
-    border-width: 0.01rem 0 0;
-    border-color: var(--light-green);
-  }
+li:not(:first-child),
+skills ul li:not(:nth-child(2)) {
+  border-style: solid;
+  border-width: 0.01rem 0 0;
+  border-color: var(--light-green);
 }
 
 /* skills */
@@ -98,10 +100,6 @@ li {
 
   &:nth-child(2) {
     border: none;
-  }
-
-  &:nth-child(even) {
-    padding: 0.5 2rem;
   }
 }
 
@@ -195,7 +193,7 @@ footer {
   #skills li {
     flex: 0 0 calc(100%);
     min-width: 100%;
-    padding: 0.5rem !important;
+    padding: 0.5rem 0 !important;
 
     &:nth-child(2) {
       border-style: solid;
