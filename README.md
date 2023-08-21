@@ -30,4 +30,4 @@ This assignment is for students in a Code The Dream program, & I am a mentor. Th
 
 ### Section 5
 
-* **Lesson 5.1** - [How the Internet Works: Debugging](https://learn.codethedream.org/debugging-op/) *([public repo](https://github.com/hayleyw7/ctd-mentor-freyr-5))*
+* **Lesson 5.1** - [How the Internet Works: Debugging](https://learn.codethedream.org/debugging-op/) *([public repo](https://github.com/hayleyw7/ctd-mentor-freyr-5.1))*
