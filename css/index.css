@@ -171,7 +171,7 @@ button {
 footer {
   background: var(--beige);
   margin-top: 2rem;
-  padding: 1rem 4rem;
+  padding: 0.03rem 4rem;
   color: var(--dark-green);
   font-weight: 800;
   text-align: center;
@@ -179,17 +179,22 @@ footer {
 
 /* mobile */
 
-@media screen and (max-width: 480px) {
-  body {
-    margin-top: 4rem;
-  }
+@media screen and (max-width: 650px) {
   nav {
     font-size: 0.8rem;
-    padding-left: 1rem;
   }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    margin: 4rem -1rem 0 -1rem !important;
+    padding: 0 !important;
+  }
+
   nav a {
     margin: 0;
   }
+
   #skills li {
     flex: 0 0 calc(100%);
     min-width: 100%;
@@ -201,6 +206,7 @@ footer {
       border-color: var(--light-green);
     }
   }
+  
   footer {
     padding: 0.03rem 0;
   }
