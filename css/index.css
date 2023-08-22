@@ -179,17 +179,21 @@ footer {
 
 /* mobile */
 
+@media screen and (max-width: 650px) {
+  nav {
+    font-size: 0.8rem;
+  }
+}
+
 @media screen and (max-width: 480px) {
   body {
     margin-top: 4rem;
   }
-  nav {
-    font-size: 0.8rem;
-    padding-left: 1rem;
-  }
+
   nav a {
     margin: 0;
   }
+
   #skills li {
     flex: 0 0 calc(100%);
     min-width: 100%;
@@ -201,6 +205,7 @@ footer {
       border-color: var(--light-green);
     }
   }
+  
   footer {
     padding: 0.03rem 0;
   }
