@@ -140,3 +140,83 @@ messageForm.addEventListener("submit", function(event) {
 
   messageForm.reset();
 });
+
+// ajax
+
+const githubRequest = new XMLHttpRequest();
+githubRequest.open("GET", "https://api.github.com/users/hayleyw7/repos");
+githubRequest.send();
+
+// load
+
+githubRequest.addEventListener("load", function(event) {
+  const repositories = JSON.parse(this.response);
+  const projectSection = document.getElementById("projects");
+  const projectList = projectSection.querySelector("ul");
+  let displayedRepos = [];
+
+  // decide which repos to add to dom
+
+  for (let i = 0; i < repositories.length; i++) {
+    let repositoryName = repositories[i].name;
+
+    // filter out specific repos
+
+    const repoNeedsShown = () => {
+      const hiddenKeywords = [
+        "practice",
+        "curriculum",
+        "prework",
+        "fundamentals",
+        "hayleyw7",
+        "homework",
+        "2",
+        "first"
+      ];
+
+      for (let j = 0; j < hiddenKeywords.length; j++) {
+        const keyword = hiddenKeywords[j];
+        
+        if (repositoryName.includes(keyword)) {
+          return false;
+        };
+      };
+      return true;
+    };
+
+    if (repoNeedsShown()) {
+
+      // format repo names
+
+      let repositoryNameWords = repositoryName.split(/[-_]|(?=[A-Z])/);
+
+      for (let k = 0; k < repositoryNameWords.length; k++) {
+        repositoryNameWords[k] = repositoryNameWords[k].charAt(0).toUpperCase() + repositoryNameWords[k].slice(1);
+      }
+
+      repositoryName = repositoryNameWords.join(" ");
+
+      // add repo to displayed repo list
+
+      displayedRepos.push(repositoryName);
+    };
+  };
+
+  // add repos to dom
+
+  for (let i = 0; i < displayedRepos.length; i++) {
+    const repoName = displayedRepos[i];
+    const project = document.createElement("li");
+    project.innerText = repoName;
+    projectList.appendChild(project);
+  };
+
+  // rm last repo if odd num
+
+  if (displayedRepos.length % 2 === 1) {
+    const lastProject = projectList.lastChild;
+    if (lastProject) {
+      projectList.removeChild(lastProject);
+    };
+  };
+});

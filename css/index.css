@@ -83,18 +83,21 @@ skills ul li:not(:nth-child(2)) {
   border-color: var(--light-green);
 }
 
-/* skills */
+/* skills & projects */
 
-#skills h2 {
+#skills h2,
+#projects h2 {
   width: 100%;
 }
 
-#skills ul {
+#skills ul,
+#projects ul {
   display: flex;
   flex-wrap: wrap;
 }
 
-#skills li {
+#skills li,
+#projects li {
   flex: 0 0 calc(50% - 2rem);
   width: 100%;
 
