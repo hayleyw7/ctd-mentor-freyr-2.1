@@ -45,7 +45,7 @@ nav a {
 section {
   margin: 0.25rem 4rem;
   padding: 0.25rem;
-  scroll-margin-top: 3.75rem;
+  scroll-margin-top: 4rem;
 }
 
 h1, h2 {
@@ -182,15 +182,18 @@ footer {
 
 /* mobile */
 
+@media screen and (max-width: 765px) {
+  nav a {
+    font-size: 0.9rem;
+    margin: 0;
+  }
+}
+
+
 @media screen and (max-width: 650px) {
   nav {
     width: 100%;
     padding-left: 1rem;
-  }
-
-  nav a {
-    font-size: 0.9rem;
-    margin: 0;
   }
 
   #skills li,

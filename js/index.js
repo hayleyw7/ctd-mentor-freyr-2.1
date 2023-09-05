@@ -187,6 +187,7 @@ githubRequest.addEventListener("load", function (event) {
     };
 
     if (repoNeedsShown()) {
+      
       // format repo names
 
       let repositoryNameWords = repositoryName.split(/[-_]|(?=[A-Z])/);
