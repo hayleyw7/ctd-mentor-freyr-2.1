@@ -158,8 +158,9 @@ githubRequest.addEventListener("load", function (event) {
   // decide which repos to add to dom
 
   for (let i = 0; i < repositories.length; i++) {
-    let repositoryURL = repositories[i].html_url;
     let repositoryName = repositories[i].name;
+    let repositoryURL = repositories[i].html_url;
+    let repositoryDate = repositories[i].created_at.split("-")[0];
 
     // filter out specific repos
 
@@ -180,13 +181,12 @@ githubRequest.addEventListener("load", function (event) {
 
         if (repositoryName.includes(keyword)) {
           return false;
-        };
-      };
+        }
+      }
       return true;
     };
 
     if (repoNeedsShown()) {
-
       // format repo names
 
       let repositoryNameWords = repositoryName.split(/[-_]|(?=[A-Z])/);
@@ -195,35 +195,38 @@ githubRequest.addEventListener("load", function (event) {
         repositoryNameWords[k] =
           repositoryNameWords[k].charAt(0).toUpperCase() +
           repositoryNameWords[k].slice(1);
-      };
+      }
 
       repositoryName = repositoryNameWords.join(" ");
 
       // add repo to displayed repo list
 
-      displayedRepos.push({ name: repositoryName, url: repositoryURL });
-    };
-  };
+      displayedRepos.push({
+        name: repositoryName,
+        url: repositoryURL,
+        date: repositoryDate
+      });
+    }
+  }
 
   // add repos to dom
 
   for (let i = 0; i < displayedRepos.length; i++) {
-    const repoName = displayedRepos[i].name;
-    const repoURL = displayedRepos[i].url;
-
-    // Create an anchor element and set its attributes
     const project = document.createElement("li");
     const link = document.createElement("a");
-    link.innerText = repoName;
-    link.href = repoURL;
-    link.target = "_blank"; // Open the link in a new tab
+    const dateLink = document.createElement("span");
 
-    // Append the anchor element to the list item
+    let name = displayedRepos[i].name;
+    let url = displayedRepos[i].url;
+    let date = displayedRepos[i].date;
+
+    link.innerText = name;
+    dateLink.innerHTML = ` <a href="${url}">(${date})</a>`;
+
     project.appendChild(link);
-
-    // Append the list item to the project list
+    project.appendChild(dateLink);
     projectList.appendChild(project);
-  };
+  }
 
   // rm last repo if odd num
 
@@ -231,6 +234,6 @@ githubRequest.addEventListener("load", function (event) {
     const lastProject = projectList.lastChild;
     if (lastProject) {
       projectList.removeChild(lastProject);
-    };
-  };
+    }
+  }
 });
