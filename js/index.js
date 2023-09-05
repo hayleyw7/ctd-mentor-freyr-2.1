@@ -141,15 +141,15 @@ messageForm.addEventListener("submit", function(event) {
   messageForm.reset();
 });
 
-// ajax
+// projects - ajax
 
 const githubRequest = new XMLHttpRequest();
 githubRequest.open("GET", "https://api.github.com/users/hayleyw7/repos");
 githubRequest.send();
 
-// load
+// projects - load
 
-githubRequest.addEventListener("load", function(event) {
+githubRequest.addEventListener("load", function (event) {
   const repositories = JSON.parse(this.response);
   const projectSection = document.getElementById("projects");
   const projectList = projectSection.querySelector("ul");
@@ -158,6 +158,7 @@ githubRequest.addEventListener("load", function(event) {
   // decide which repos to add to dom
 
   for (let i = 0; i < repositories.length; i++) {
+    let repositoryURL = repositories[i].html_url;
     let repositoryName = repositories[i].name;
 
     // filter out specific repos
@@ -176,7 +177,7 @@ githubRequest.addEventListener("load", function(event) {
 
       for (let j = 0; j < hiddenKeywords.length; j++) {
         const keyword = hiddenKeywords[j];
-        
+
         if (repositoryName.includes(keyword)) {
           return false;
         };
@@ -191,23 +192,36 @@ githubRequest.addEventListener("load", function(event) {
       let repositoryNameWords = repositoryName.split(/[-_]|(?=[A-Z])/);
 
       for (let k = 0; k < repositoryNameWords.length; k++) {
-        repositoryNameWords[k] = repositoryNameWords[k].charAt(0).toUpperCase() + repositoryNameWords[k].slice(1);
-      }
+        repositoryNameWords[k] =
+          repositoryNameWords[k].charAt(0).toUpperCase() +
+          repositoryNameWords[k].slice(1);
+      };
 
       repositoryName = repositoryNameWords.join(" ");
 
       // add repo to displayed repo list
 
-      displayedRepos.push(repositoryName);
+      displayedRepos.push({ name: repositoryName, url: repositoryURL });
     };
   };
 
   // add repos to dom
 
   for (let i = 0; i < displayedRepos.length; i++) {
-    const repoName = displayedRepos[i];
+    const repoName = displayedRepos[i].name;
+    const repoURL = displayedRepos[i].url;
+
+    // Create an anchor element and set its attributes
     const project = document.createElement("li");
-    project.innerText = repoName;
+    const link = document.createElement("a");
+    link.innerText = repoName;
+    link.href = repoURL;
+    link.target = "_blank"; // Open the link in a new tab
+
+    // Append the anchor element to the list item
+    project.appendChild(link);
+
+    // Append the list item to the project list
     projectList.appendChild(project);
   };
 
