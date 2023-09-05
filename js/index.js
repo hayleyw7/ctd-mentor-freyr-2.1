@@ -140,3 +140,100 @@ messageForm.addEventListener("submit", function(event) {
 
   messageForm.reset();
 });
+
+// projects - ajax
+
+const githubRequest = new XMLHttpRequest();
+githubRequest.open("GET", "https://api.github.com/users/hayleyw7/repos");
+githubRequest.send();
+
+// projects - load
+
+githubRequest.addEventListener("load", function (event) {
+  const repositories = JSON.parse(this.response);
+  const projectSection = document.getElementById("projects");
+  const projectList = projectSection.querySelector("ul");
+  let displayedRepos = [];
+
+  // decide which repos to add to dom
+
+  for (let i = 0; i < repositories.length; i++) {
+    let repositoryName = repositories[i].name;
+    let repositoryURL = repositories[i].html_url;
+    let repositoryDate = repositories[i].created_at.split("-")[0];
+
+    // filter out specific repos
+
+    const repoNeedsShown = () => {
+      const hiddenKeywords = [
+        "practice",
+        "curriculum",
+        "prework",
+        "fundamentals",
+        "hayleyw7",
+        "homework",
+        "2",
+        "first"
+      ];
+
+      for (let j = 0; j < hiddenKeywords.length; j++) {
+        const keyword = hiddenKeywords[j];
+
+        if (repositoryName.includes(keyword)) {
+          return false;
+        }
+      }
+      return true;
+    };
+
+    if (repoNeedsShown()) {
+      // format repo names
+
+      let repositoryNameWords = repositoryName.split(/[-_]|(?=[A-Z])/);
+
+      for (let k = 0; k < repositoryNameWords.length; k++) {
+        repositoryNameWords[k] =
+          repositoryNameWords[k].charAt(0).toUpperCase() +
+          repositoryNameWords[k].slice(1);
+      }
+
+      repositoryName = repositoryNameWords.join(" ");
+
+      // add repo to displayed repo list
+
+      displayedRepos.push({
+        name: repositoryName,
+        url: repositoryURL,
+        date: repositoryDate
+      });
+    }
+  }
+
+  // add repos to dom
+
+  for (let i = 0; i < displayedRepos.length; i++) {
+    const project = document.createElement("li");
+    const link = document.createElement("a");
+    const dateLink = document.createElement("span");
+
+    let name = displayedRepos[i].name;
+    let url = displayedRepos[i].url;
+    let date = displayedRepos[i].date;
+
+    link.innerText = name;
+    dateLink.innerHTML = ` <a href="${url}">(${date})</a>`;
+
+    project.appendChild(link);
+    project.appendChild(dateLink);
+    projectList.appendChild(project);
+  }
+
+  // rm last repo if odd num
+
+  if (displayedRepos.length % 2 === 1) {
+    const lastProject = projectList.lastChild;
+    if (lastProject) {
+      projectList.removeChild(lastProject);
+    }
+  }
+});
