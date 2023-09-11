@@ -35,3 +35,5 @@ This assignment is for students in a Code The Dream program, & I am a mentor. Th
 ### Section 6
 
 * **Lesson 6.1** - [AJAX Basics](https://learn.codethedream.org/ajax-basics-op/) *([public repo](https://github.com/hayleyw7/ctd-mentor-freyr-5.1))*
+
+* **Lesson 6.2** - [AJAX Basics: Working with Fetch API](https://learn.codethedream.org/working-with-fetch-api-op/) *([public repo](https://github.com/hayleyw7/ctd-mentor-freyr-5.1))*
