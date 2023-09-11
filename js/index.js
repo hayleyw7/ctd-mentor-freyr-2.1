@@ -239,11 +239,17 @@ function displayProjects(repositories) {
 // projects - ajax call
 
 fetch("https://api.github.com/users/hayleyw7/repos")
-  .then(response => response.json())
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
   .then(repositories => {
     displayProjects(repositories);
   })
   .catch(error => {
-    console.error('Error fetching API:', error);
+    const projectSection = document.getElementById("projects");
+    projectSection.style.display = "none";
+    console.error("Error fetching projects from GitHub:", error);
   });
-
