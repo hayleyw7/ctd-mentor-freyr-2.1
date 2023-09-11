@@ -141,16 +141,9 @@ messageForm.addEventListener("submit", function(event) {
   messageForm.reset();
 });
 
-// projects - ajax
+// projects - display
 
-const githubRequest = new XMLHttpRequest();
-githubRequest.open("GET", "https://api.github.com/users/hayleyw7/repos");
-githubRequest.send();
-
-// projects - load
-
-githubRequest.addEventListener("load", function (event) {
-  const repositories = JSON.parse(this.response);
+function displayProjects(repositories) {
   const projectSection = document.getElementById("projects");
   const projectList = projectSection.querySelector("ul");
   let displayedRepos = [];
@@ -207,8 +200,8 @@ githubRequest.addEventListener("load", function (event) {
         url: repositoryURL,
         date: repositoryDate
       });
-    }
-  }
+    };
+  };
 
   // add repos to dom
 
@@ -227,7 +220,7 @@ githubRequest.addEventListener("load", function (event) {
     project.appendChild(link);
     project.appendChild(dateLink);
     projectList.appendChild(project);
-  }
+  };
 
   // rm last repo if odd num
 
@@ -235,6 +228,15 @@ githubRequest.addEventListener("load", function (event) {
     const lastProject = projectList.lastChild;
     if (lastProject) {
       projectList.removeChild(lastProject);
-    }
-  }
+    };
+  };
+};
+
+// projects - ajax
+
+
+fetch("https://api.github.com/users/hayleyw7/repos")
+  .then(response => response.json())
+  .then(repositories => {
+    displayProjects(repositories);
 });
