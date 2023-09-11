@@ -141,21 +141,14 @@ messageForm.addEventListener("submit", function(event) {
   messageForm.reset();
 });
 
-// projects - ajax
+// projects - show
 
-const githubRequest = new XMLHttpRequest();
-githubRequest.open("GET", "https://api.github.com/users/hayleyw7/repos");
-githubRequest.send();
-
-// projects - load
-
-githubRequest.addEventListener("load", function (event) {
-  const repositories = JSON.parse(this.response);
+function displayProjects(repositories) {
   const projectSection = document.getElementById("projects");
   const projectList = projectSection.querySelector("ul");
   let displayedRepos = [];
 
-  // decide which repos to add to dom
+  // decide which repos to show
 
   for (let i = 0; i < repositories.length; i++) {
     let repositoryName = repositories[i].name;
@@ -164,7 +157,7 @@ githubRequest.addEventListener("load", function (event) {
 
     // filter out specific repos
 
-    const repoNeedsShown = () => {
+    function repoNeedsShown() {
       const hiddenKeywords = [
         "practice",
         "curriculum",
@@ -186,8 +179,8 @@ githubRequest.addEventListener("load", function (event) {
       return true;
     };
 
-    if (repoNeedsShown()) {
-      
+    function setRepoToShow() {
+
       // format repo names
 
       let repositoryNameWords = repositoryName.split(/[-_]|(?=[A-Z])/);
@@ -207,10 +200,14 @@ githubRequest.addEventListener("load", function (event) {
         url: repositoryURL,
         date: repositoryDate
       });
-    }
-  }
+    };
 
-  // add repos to dom
+    if (repoNeedsShown()) {
+      setRepoToShow();
+    };
+  };
+
+  // show repos
 
   for (let i = 0; i < displayedRepos.length; i++) {
     const project = document.createElement("li");
@@ -227,14 +224,32 @@ githubRequest.addEventListener("load", function (event) {
     project.appendChild(link);
     project.appendChild(dateLink);
     projectList.appendChild(project);
-  }
+  };
 
-  // rm last repo if odd num
+  // hide last repo if odd num
 
   if (displayedRepos.length % 2 === 1) {
     const lastProject = projectList.lastChild;
     if (lastProject) {
       projectList.removeChild(lastProject);
+    };
+  };
+};
+
+// projects - ajax call
+
+fetch("https://api.github.com/users/hayleyw7/repos")
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
     }
-  }
-});
+    return response.json();
+  })
+  .then(repositories => {
+    displayProjects(repositories);
+  })
+  .catch(error => {
+    const projectSection = document.getElementById("projects");
+    projectSection.style.display = "none";
+    console.error("Error fetching projects from GitHub:", error);
+  });
