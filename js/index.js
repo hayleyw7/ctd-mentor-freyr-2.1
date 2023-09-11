@@ -141,14 +141,14 @@ messageForm.addEventListener("submit", function(event) {
   messageForm.reset();
 });
 
-// projects - display
+// projects - show
 
 function displayProjects(repositories) {
   const projectSection = document.getElementById("projects");
   const projectList = projectSection.querySelector("ul");
   let displayedRepos = [];
 
-  // decide which repos to add to dom
+  // decide which repos to show
 
   for (let i = 0; i < repositories.length; i++) {
     let repositoryName = repositories[i].name;
@@ -157,7 +157,7 @@ function displayProjects(repositories) {
 
     // filter out specific repos
 
-    const repoNeedsShown = () => {
+    function repoNeedsShown() {
       const hiddenKeywords = [
         "practice",
         "curriculum",
@@ -179,8 +179,8 @@ function displayProjects(repositories) {
       return true;
     };
 
-    if (repoNeedsShown()) {
-      
+    function setRepoToShow() {
+
       // format repo names
 
       let repositoryNameWords = repositoryName.split(/[-_]|(?=[A-Z])/);
@@ -201,9 +201,13 @@ function displayProjects(repositories) {
         date: repositoryDate
       });
     };
+
+    if (repoNeedsShown()) {
+      setRepoToShow();
+    };
   };
 
-  // add repos to dom
+  // show repos
 
   for (let i = 0; i < displayedRepos.length; i++) {
     const project = document.createElement("li");
@@ -222,7 +226,7 @@ function displayProjects(repositories) {
     projectList.appendChild(project);
   };
 
-  // rm last repo if odd num
+  // hide last repo if odd num
 
   if (displayedRepos.length % 2 === 1) {
     const lastProject = projectList.lastChild;
@@ -232,8 +236,7 @@ function displayProjects(repositories) {
   };
 };
 
-// projects - ajax
-
+// projects - ajax call
 
 fetch("https://api.github.com/users/hayleyw7/repos")
   .then(response => response.json())
