@@ -242,4 +242,8 @@ fetch("https://api.github.com/users/hayleyw7/repos")
   .then(response => response.json())
   .then(repositories => {
     displayProjects(repositories);
-});
+  })
+  .catch(error => {
+    console.error('Error fetching API:', error);
+  });
+
