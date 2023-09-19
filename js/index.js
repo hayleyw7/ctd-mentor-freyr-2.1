@@ -49,7 +49,7 @@ messageForm.addEventListener("submit", function(event) {
 
   const usersName = event.target.usersName.value;
   const usersEmail = event.target.usersEmail.value;
-  const usersMessage = event.target.usersMessage.value;
+  let usersMessage = event.target.usersMessage.value;
 
   console.log(usersName, usersEmail, usersMessage);
 
@@ -58,10 +58,14 @@ messageForm.addEventListener("submit", function(event) {
   const messageList = messageSection.querySelector("ul");
   const newMessage = document.createElement("li");
 
-  newMessage.innerHTML = `
-    <a href="mailto:${usersEmail}">${usersName}</a>
-    <span>wrote: ${usersMessage}</span>
-  `;
+  const setMessageHtml = () => {
+    newMessage.innerHTML = `
+      <a href="mailto:${usersEmail}">${usersName}</a>
+      <span>wrote: ${usersMessage}</span>
+    `;
+  };
+
+  setMessageHtml();
 
   messageSection.style.display = "inline-block";
   messageList.append(newMessage);
@@ -107,10 +111,8 @@ messageForm.addEventListener("submit", function(event) {
     let editTextBox = document.createElement("textarea");
     const saveButton = document.createElement("button");
 
-    newMessage.innerHTML = `
-      <a href="mailto:${usersEmail}">${usersName}</a>
-      <span>wrote: </span>
-    `;
+    removeButton.remove();
+    editButton.remove();
 
     editTextBox.name = "editTextBox";
     editTextBox.required = true;
@@ -124,12 +126,9 @@ messageForm.addEventListener("submit", function(event) {
     // save edit
 
     saveButton.addEventListener("click", function () {
-      const usersEditedMessage = editTextBox.value;
+      usersMessage = editTextBox.value;
 
-      newMessage.innerHTML = `
-        <a href="mailto:${usersEmail}">${usersName}</a>
-        <span>wrote: ${usersEditedMessage}</span>
-      `;
+      setMessageHtml();
 
       createRemoveButton();
       createEditButton();
